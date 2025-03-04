@@ -197,8 +197,7 @@ def train(total_epochs):
 
     # test
     test_acc = test(ep + 1)
-    print('save model with acc ' + str(best_acc))
-    print('the test acc is ' + str(best_acc))
+    print('the test acc is ' + str(test_acc))
 
 
 def test(epoch):
