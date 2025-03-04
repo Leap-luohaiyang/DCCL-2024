@@ -104,7 +104,6 @@ def train(total_epochs):
     cont_ta = CDCTargetAnchor(temperature=0.5).cuda()
     cont_ss = SupConLoss(temperature=0.5).cuda()
     cont_tt = SupConLoss(temperature=0.5).cuda()
-    best_acc = 0
 
     for ep in range(total_epochs):
         """Mapped source class centers"""
@@ -205,13 +204,9 @@ def train(total_epochs):
             optimizer_g.step()
             optimizer_f.step()
 
-        # test
-        current_acc = test(ep + 1)
-        if current_acc > best_acc:
-            best_acc = current_acc
-            print('save model with acc ' + str(best_acc))
-
-        print('util now the best acc is ' + str(best_acc))
+    # test
+    test_acc = test(ep + 1)
+    print('the test acc is ' + str(test_acc))
 
 
 def test(epoch):
